@@ -245,6 +245,40 @@ export function ensureWriteFileSync(
     safeWriteFileSync(filePath, data);
 }
 
+/**
+ * Recursively create a directory, and don't fail if it exists
+ * 
+ * Like mkdir -p
+ * @param directory The directory to creare 
+ * @param options Either a mode for the created directory or an object with the mode property set to the mode
+ */
+export async function mkdirp(directory: string, options?: null | fsSync.Mode | fsSync.MakeDirectoryOptions) {
+    if(!options)
+        return await fs.mkdir(directory, { recursive: true }); 
+    if(typeof options !== "object")
+        return fs.mkdir(directory, {
+            mode: options
+        })
+    return fs.mkdir(directory, { ...options, recursive: true });
+}
+
+/**
+ * Recursively and synchronously create a directory, and don't fail if it exists
+ * 
+ * Like mkdir -p
+ * @param directory The directory to creare 
+ * @param options Either a mode for the created directory or an object with the mode property set to the mode
+ */
+export function mkdirpSync(directory: string, options?: null | fsSync.Mode | fsSync.MakeDirectoryOptions) {
+    if(!options)
+        return fsSync.mkdirSync(directory, { recursive: true }); 
+    if(typeof options !== "object")
+        return fsSync.mkdirSync(directory, {
+            mode: options
+        })
+    return fsSync.mkdirSync(directory, { ...options, recursive: true });
+}
+
 // Export the promise-based version of the fs module, not the callback-based one
 export * from "fs/promises";
 // Export all synchronous functions from fs
