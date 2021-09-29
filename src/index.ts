@@ -247,37 +247,44 @@ export function ensureWriteFileSync(
 
 /**
  * Recursively create a directory, and don't fail if it exists
- * 
+ *
  * Like mkdir -p
- * @param directory The directory to creare 
+ * @param directory The directory to creare
  * @param options Either a mode for the created directory or an object with the mode property set to the mode
  */
-export async function mkdirp(directory: string, options?: null | fsSync.Mode | fsSync.MakeDirectoryOptions) {
-    if(!options)
-        return await fs.mkdir(directory, { recursive: true }); 
-    if(typeof options !== "object")
+export async function mkdirp(
+    directory: string,
+    options?: null | fsSync.Mode | fsSync.MakeDirectoryOptions
+): Promise<string | undefined | void> {
+    if (!options) return await fs.mkdir(directory, { recursive: true });
+    if (typeof options !== "object")
         return fs.mkdir(directory, {
-            mode: options
-        })
+            mode: options,
+        });
     return fs.mkdir(directory, { ...options, recursive: true });
 }
 
 /**
  * Recursively and synchronously create a directory, and don't fail if it exists
- * 
+ *
  * Like mkdir -p
- * @param directory The directory to creare 
+ * @param directory The directory to creare
  * @param options Either a mode for the created directory or an object with the mode property set to the mode
  */
-export function mkdirpSync(directory: string, options?: null | fsSync.Mode | fsSync.MakeDirectoryOptions) {
-    if(!options)
-        return fsSync.mkdirSync(directory, { recursive: true }); 
-    if(typeof options !== "object")
+export function mkdirpSync(
+    directory: string,
+    options?: null | fsSync.Mode | fsSync.MakeDirectoryOptions
+): string | undefined | void {
+    if (!options) return fsSync.mkdirSync(directory, { recursive: true });
+    if (typeof options !== "object")
         return fsSync.mkdirSync(directory, {
-            mode: options
-        })
+            mode: options,
+        });
     return fsSync.mkdirSync(directory, { ...options, recursive: true });
 }
+
+export {cp as copy} from "fs/promises";
+export {cpSync as copySync} from "fs";
 
 // Export the promise-based version of the fs module, not the callback-based one
 export * from "fs/promises";
