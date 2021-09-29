@@ -1,5 +1,4 @@
-# Common utils
+# @runcitadel/fs
 
-This repository contains code which previously existed in both manager and middleware.
-Moving it into this repo allows us to fix the code without having to do the same change in both repositories,
-allows others to use what they find useful, and helps keeping manager and middleware clean.
+`fs` extended. This module exports all synchrounous and Promise-based methods from fs and a few additional tools.
+It's supposed to eventually replace `fs-extra`, but only works in Node 16 or later.
