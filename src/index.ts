@@ -283,8 +283,8 @@ export function mkdirpSync(
     return fsSync.mkdirSync(directory, { ...options, recursive: true });
 }
 
-export {cp as copy} from "fs/promises";
-export {cpSync as copySync} from "fs";
+export { cp as copy } from "fs/promises";
+export { cpSync as copySync } from "fs";
 
 // Export the promise-based version of the fs module, not the callback-based one
 export * from "fs/promises";
