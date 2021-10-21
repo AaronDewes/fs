@@ -201,6 +201,7 @@ export async function touch(
         await fs.utimes(filePath, time, time);
     } catch {
         await (await fs.open(filePath, "w")).close();
+        await fs.utimes(filePath, time, time);
     }
 }
 
@@ -283,6 +284,7 @@ export function mkdirpSync(
     return fsSync.mkdirSync(directory, { ...options, recursive: true });
 }
 
+// API compatibility with fs-extra
 export { cp as copy } from "fs/promises";
 export { cpSync as copySync } from "fs";
 
