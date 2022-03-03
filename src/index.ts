@@ -19,7 +19,7 @@ export type writeableData =
  * @returns The content of the file
  */
 export async function readUtf8File(filePath: string): Promise<string> {
-    return await fs.readFile(filePath, "utf8");
+    return (await fs.readFile(filePath, "utf8")).trim();
 }
 
 /**
@@ -29,7 +29,7 @@ export async function readUtf8File(filePath: string): Promise<string> {
  * @returns The content of the file
  */
 export function readUtf8FileSync(filePath: string): string {
-    return fsSync.readFileSync(filePath, "utf8");
+    return fsSync.readFileSync(filePath, "utf8").trim();
 }
 
 /**
