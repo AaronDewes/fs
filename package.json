@@ -1,7 +1,7 @@
 {
     "name": "@runcitadel/fs",
     "packageManager": "yarn@3.1.1",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "dependencies": {
         "yaml": "^1.10.2"
     },
